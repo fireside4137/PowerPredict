@@ -122,7 +122,8 @@ PowerPredict/
 ├── .gitignore                          # Git ignore definitions
 ├── LICENSE                             # MIT License
 ├── README.md                           # Documentation
-└── requirements.txt                    # Project dependencies
+├── requirements.txt                    # Project dependencies
+└── app.py                              # Interactive Streamlit web application
 ```
 
 ---
@@ -168,6 +169,19 @@ Run automated tests via `pytest`:
 ```bash
 pytest tests/ -v
 ```
+
+### 5. Launching the Interactive Web App
+
+Launch the Streamlit web dashboard:
+
+```bash
+streamlit run app.py
+```
+This opens the web interface in your browser (`http://localhost:8501`), offering:
+- **Interactive Sliders**: Real-time adjustment of ambient conditions.
+- **Operating Presets**: One-click simulation of extreme and baseline weather days.
+- **Batch CSV Inference**: Upload raw hourly data and download instant output predictions.
+- **Model Analytics**: Evaluation metrics and diagnostic plots directly in the UI.
 
 ---
 

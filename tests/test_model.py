@@ -56,3 +56,15 @@ def test_prediction_output_range():
     output = model(sample)
     assert not torch.isnan(output).any()
     assert not torch.isinf(output).any()
+
+
+def test_power_predictor_inference():
+    """Verify end-to-end inference wrapper produces realistic MW values."""
+    from src.predict import PowerPredictor
+    import os
+    if os.path.exists("models/best_model.pt") and os.path.exists("models/scaler.joblib"):
+        predictor = PowerPredictor()
+        # Ambient temp 15°C, Vacuum 40 cm Hg, Pressure 1013 mbar, Humidity 70%
+        pred = predictor.predict([[15.0, 40.0, 1013.0, 70.0]])
+        # Expected to be well within plant operating range [420, 496] MW
+        assert 420.0 <= float(pred) <= 496.0
