@@ -2,10 +2,13 @@
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://powerpredict-main.streamlit.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 A deep learning regression system developed in **PyTorch** to predict the net hourly electrical energy output (**PE**, in Megawatts) of a **Combined Cycle Power Plant (CCPP)** using ambient thermodynamic variables.
+
+> 🚀 **Live Web Application:** Test the model interactively at **[powerpredict-main.streamlit.app](https://powerpredict-main.streamlit.app/)**!
 
 ---
 
@@ -37,20 +40,11 @@ The dataset consists of **9,568 hourly observations** collected from a Combined 
 
 ## 🧠 Neural Network Architecture
 
-The predictive model is a Multilayer Perceptron (MLP) implemented in PyTorch (`src/model.py`):
+The predictive model is a Multilayer Perceptron (MLP) implemented in PyTorch (`src/model.py`), mapping the 4 ambient thermodynamic features through two dense hidden layers to predict electrical power output:
 
-```
-Input Features (4) 
-    │
-    ▼
-Linear (4 → 6) + ReLU
-    │
-    ▼
-Linear (6 → 6) + ReLU
-    │
-    ▼
-Linear (6 → 1) ──► Predicted Power Output (PE in MW)
-```
+<p align="center">
+  <img src="assets/nn_architecture.png" width="850" alt="Neural Network Architecture">
+</p>
 
 - **Input Dimension:** 4 features (`AT`, `V`, `AP`, `RH`)
 - **Hidden Layers:** 2 layers with 6 units each, activated by **ReLU**
@@ -101,7 +95,8 @@ PowerPredict/
 ├── assets/
 │   ├── Actual vs predicted.png         # Regression fit scatter plot
 │   ├── Distribution of residuals.png    # Error distribution histogram
-│   └── Minimization of Loss.png         # Training vs validation loss curve
+│   ├── Minimization of Loss.png         # Training vs validation loss curve
+│   └── nn_architecture.png              # Circle-and-arrow neural network diagram
 ├── data/
 │   └── powerplant_data.csv             # Combined Cycle Power Plant dataset
 ├── models/

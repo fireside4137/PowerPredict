@@ -316,3 +316,11 @@ with tab3:
         st.caption("Residuals follow a normal Gaussian curve centered at zero, proving unbiased predictions.")
     else:
         st.info("Residuals plot not found in assets.")
+
+    st.markdown("---")
+    st.markdown("#### 🧠 Artificial Neural Network (ANN) Architecture")
+    arch_img = os.path.join(assets_dir, "nn_architecture.png")
+    if os.path.exists(arch_img):
+        st.image(arch_img, caption="Feedforward Dense Architecture (4 -> 6 -> 6 -> 1)", use_container_width=True)
+        st.caption("Dense feedforward architecture with 79 parameters, ReLU activations, and linear regression head.")
+
